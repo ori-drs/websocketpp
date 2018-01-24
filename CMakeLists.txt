@@ -13,6 +13,7 @@ set (WEBSOCKETPP_MINOR_VERSION 7)
 set (WEBSOCKETPP_PATCH_VERSION 0)
 set (WEBSOCKETPP_VERSION ${WEBSOCKETPP_MAJOR_VERSION}.${WEBSOCKETPP_MINOR_VERSION}.${WEBSOCKETPP_PATCH_VERSION})
 
+
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(INSTALL_INCLUDE_DIR include CACHE PATH "Installation directory for header files")
@@ -67,9 +68,6 @@ option (ENABLE_CPP11 "Build websocketpp with CPP11 features enabled." TRUE)
 option (BUILD_EXAMPLES "Build websocketpp examples." FALSE)
 option (BUILD_TESTS "Build websocketpp tests." FALSE)
 
-if (ENABLE_CPP11)
-    set( CMAKE_CXX_STANDARD 11 )
-endif ()
 
 if (BUILD_TESTS OR BUILD_EXAMPLES)
 
@@ -121,7 +119,7 @@ if (BUILD_TESTS OR BUILD_EXAMPLES)
         set (WEBSOCKETPP_PLATFORM_LIBS pthread rt)
         set (WEBSOCKETPP_PLATFORM_TLS_LIBS ssl crypto)
         set (WEBSOCKETPP_BOOST_LIBS system thread)
-        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdc++11 -stdlib=libstdc++")
         if (NOT APPLE)
             add_definitions (-DNDEBUG -Wall -Wcast-align) # todo: should we use CMAKE_C_FLAGS for these?
         endif ()
@@ -143,7 +141,7 @@ if (BUILD_TESTS OR BUILD_EXAMPLES)
         endif()
         set (WEBSOCKETPP_PLATFORM_TLS_LIBS ssl crypto)
         set (WEBSOCKETPP_BOOST_LIBS system thread)
-        set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++0x -stdlib=libc++") # todo: is libc++ really needed here?
+        set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11 -stdlib=libstdc++") # todo: is libc++ really needed here?
         if (NOT APPLE)
             add_definitions (-DNDEBUG -Wall -Wno-padded) # todo: should we use CMAKE_C_FLAGS for these?
         endif ()

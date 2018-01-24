@@ -67,6 +67,10 @@ option (ENABLE_CPP11 "Build websocketpp with CPP11 features enabled." TRUE)
 option (BUILD_EXAMPLES "Build websocketpp examples." FALSE)
 option (BUILD_TESTS "Build websocketpp tests." FALSE)
 
+if (ENABLE_CPP11)
+    set( CMAKE_CXX_STANDARD 11 )
+endif ()
+
 if (BUILD_TESTS OR BUILD_EXAMPLES)
 
     enable_testing ()
